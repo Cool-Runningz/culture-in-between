@@ -33,7 +33,7 @@ function EpisodeEntry({ episode }) {
         src: episode.audio.src,
         type: episode.audio.type,
       },
-      link: `/${episode.id}`,
+      link: `episode/${episode.id}`,
     }),
     [episode]
   )
@@ -50,7 +50,7 @@ function EpisodeEntry({ episode }) {
             id={`episode-${episode.id}-title`}
             className="mt-2 text-lg font-bold text-slate-900"
           >
-            <Link href={`/${episode.id}`}>{episode.title}</Link>
+            <Link href={`episode/${episode.id}`}>{episode.title}</Link>
           </h2>
           <FormattedDate
             date={date}
@@ -64,9 +64,8 @@ function EpisodeEntry({ episode }) {
               type="button"
               onClick={() => player.toggle()}
               className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
-              aria-label={`${player.playing ? 'Pause' : 'Play'} episode ${
-                episode.title
-              }`}
+              aria-label={`${player.playing ? 'Pause' : 'Play'} episode ${episode.title
+                }`}
             >
               <PlayPauseIcon
                 playing={player.playing}
@@ -83,7 +82,7 @@ function EpisodeEntry({ episode }) {
               /
             </span>
             <Link
-              href={`/${episode.id}`}
+              href={`episode/${episode.id}`}
               className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
               aria-label={`Show notes for episode ${episode.title}`}
             >
