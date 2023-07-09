@@ -4,13 +4,11 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { AudioPlayer } from '@/components/player/AudioPlayer'
-import { SpotifyIcon, ApplePodcastIcon, OvercastIcon, RSSIcon } from '@/components/icons/PodcastIcons'
+import { SpotifyIcon, ApplePodcastIcon, OvercastIcon, RSSIcon, StitcherIcon } from '@/components/icons/PodcastIcons'
 import { Waveform, TinyWaveFormIcon } from '@/components/icons/WavesIcons'
 import posterImage from '@/images/poster.png'
 
 function AboutSection(props) {
-  let [isExpanded, setIsExpanded] = useState(false)
-
   return (
     <section {...props}>
       <h2 className="flex items-center font-mono text-sm font-medium leading-7 text-slate-900">
@@ -23,24 +21,50 @@ function AboutSection(props) {
       <p
         className={clsx(
           'mt-2 text-base leading-7 text-slate-700',
-          !isExpanded && 'lg:line-clamp-4'
         )}
       >
-        In this show, Eric and Wes dig deep to get to the facts with guests who
-        have been labeled villains by a society quick to judge, without actually
-        getting the full story. Tune in every Thursday to get to the truth with
-        another misunderstood outcast as they share the missing context in their
-        tragic tale.
+        A podcast that shares the stories of people who have grown up in a culture different from their parents.
+        Highlighting the unique experiences, challenges, and triumphs that come with navigating cultural identity.
+        By sharing these stories, we hope to raise awareness, promote empathy, and inspire listeners to appreciate the beauty of diverse cultures.
       </p>
-      {!isExpanded && (
-        <button
-          type="button"
-          className="mt-2 hidden text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900 lg:inline-block"
-          onClick={() => setIsExpanded(true)}
-        >
-          Show more
-        </button>
-      )}
+    </section>
+  )
+}
+
+function ListenSection(props) {
+  return (
+    <section className="mt-8">
+      <h2 className="sr-only flex items-center font-mono text-sm font-medium leading-7 text-slate-900 lg:not-sr-only">
+        <TinyWaveFormIcon
+          colors={['fill-indigo-300', 'fill-blue-300']}
+          className="h-2.5 w-2.5"
+        />
+        <span className="ml-2.5">Listen</span>
+      </h2>
+      <div className="h-px bg-gradient-to-r from-slate-200/0 via-slate-200 to-slate-200/0 lg:hidden" />
+      <ul
+        role="list"
+        className="mt-4 flex justify-center gap-10 text-base font-medium leading-7 text-slate-700 sm:gap-8 lg:flex-col lg:gap-4"
+      >
+        {[
+          ['Spotify', SpotifyIcon],
+          ['Apple Podcast', ApplePodcastIcon],
+          ['Overcast', OvercastIcon],
+          ['RSS Feed', RSSIcon],
+          ['', StitcherIcon], //label is linked in the SVG element 
+        ].map(([label, Icon]) => (
+          <li key={label} className="flex">
+            <Link
+              href="/"
+              className="group flex items-center"
+              aria-label={label}
+            >
+              <Icon className="h-8 w-8 fill-slate-400 group-hover:fill-slate-600" />
+              {label.length > 0 && <span className="hidden sm:ml-3 sm:block">{label}</span>}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </section>
   )
 }
@@ -85,41 +109,9 @@ export function Layout({ children }) {
             <p className="text-xl font-bold text-slate-900">
               <Link href="/">Culture In Between</Link>
             </p>
-            <p className="mt-3 text-lg font-medium leading-8 text-slate-700">TODO: Add podcast short description here</p>
           </div>
-          <AboutSection className="mt-12 hidden lg:block" />
-          <section className="mt-10 lg:mt-12">
-            <h2 className="sr-only flex items-center font-mono text-sm font-medium leading-7 text-slate-900 lg:not-sr-only">
-              <TinyWaveFormIcon
-                colors={['fill-indigo-300', 'fill-blue-300']}
-                className="h-2.5 w-2.5"
-              />
-              <span className="ml-2.5">Listen</span>
-            </h2>
-            <div className="h-px bg-gradient-to-r from-slate-200/0 via-slate-200 to-slate-200/0 lg:hidden" />
-            <ul
-              role="list"
-              className="mt-4 flex justify-center gap-10 text-base font-medium leading-7 text-slate-700 sm:gap-8 lg:flex-col lg:gap-4"
-            >
-              {[
-                ['Spotify', SpotifyIcon],
-                ['Apple Podcast', ApplePodcastIcon],
-                ['Overcast', OvercastIcon],
-                ['RSS Feed', RSSIcon],
-              ].map(([label, Icon]) => (
-                <li key={label} className="flex">
-                  <Link
-                    href="/"
-                    className="group flex items-center"
-                    aria-label={label}
-                  >
-                    <Icon className="h-8 w-8 fill-slate-400 group-hover:fill-slate-600" />
-                    <span className="hidden sm:ml-3 sm:block">{label}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
+          <AboutSection className="mt-8 hidden lg:block" />
+          <ListenSection />
         </div>
       </header>
       <main className="border-t border-slate-200 lg:relative lg:mb-28 lg:ml-112 lg:border-t-0 xl:ml-120">
