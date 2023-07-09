@@ -51,7 +51,7 @@ export function RSSIcon(props) {
 
 export function StitcherIcon() {
     return (
-        <svg width="95" height="40" viewBox="0 0 140 59" className="ml-lg-4" aria-labelledby="logo-label">
+        <svg width="75" height="40" viewBox="0 0 140 59" className="ml-lg-4" aria-labelledby="logo-label">
             <title id="logo-label">Stitcher Logo</title>
             <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                 <g id="stitcherLogo" transform="translate(0.717172, 0.136364)" fillRule="nonzero">
