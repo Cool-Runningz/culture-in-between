@@ -100,8 +100,7 @@ export default function Home({ episodes }) {
     <>
       <Head>
         <title>
-          Their Side - Conversations with the most tragically misunderstood
-          people of our time
+          Culture In Between
         </title>
         <meta
           name="description"
