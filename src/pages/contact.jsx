@@ -96,6 +96,7 @@ export default function Contact() {
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" name="_honeypot" />
                         <div className="mt-10">
                             <button
                                 type="submit"
