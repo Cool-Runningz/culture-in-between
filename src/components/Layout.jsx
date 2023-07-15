@@ -4,7 +4,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { AudioPlayer } from '@/components/player/AudioPlayer'
-import { SpotifyIcon, ApplePodcastIcon, OvercastIcon, RSSIcon, StitcherIcon } from '@/components/icons/PodcastIcons'
+import { SpotifyIcon, ApplePodcastIcon, OvercastIcon, RSSIcon, GooglePodcastsIcon } from '@/components/icons/PodcastIcons'
 import { Waveform, TinyWaveFormIcon } from '@/components/icons/WavesIcons'
 import posterImage from '@/images/poster.png'
 
@@ -49,9 +49,9 @@ function ListenSection(props) {
         {[
           ['Spotify', SpotifyIcon],
           ['Apple Podcast', ApplePodcastIcon],
+          ['Google Podcasts', GooglePodcastsIcon],
           ['Overcast', OvercastIcon],
           ['RSS Feed', RSSIcon],
-          ['', StitcherIcon], //label is linked in the SVG element 
         ].map(([label, Icon]) => (
           <li key={label} className="flex">
             <Link
@@ -60,7 +60,7 @@ function ListenSection(props) {
               aria-label={label}
             >
               <Icon className="h-8 w-8 fill-slate-400 group-hover:fill-slate-600" />
-              {label.length > 0 && <span className="hidden sm:ml-3 sm:block">{label}</span>}
+              <span className="hidden sm:ml-3 sm:block">{label}</span>
             </Link>
           </li>
         ))}
