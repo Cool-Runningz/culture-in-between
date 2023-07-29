@@ -6,26 +6,24 @@ import clsx from 'clsx'
 import { AudioPlayer } from '@/components/player/AudioPlayer'
 import { SpotifyIcon, ApplePodcastIcon, OvercastIcon, RSSIcon, GooglePodcastsIcon } from '@/components/icons/PodcastIcons'
 import { Waveform, TinyWaveFormIcon } from '@/components/icons/WavesIcons'
-import posterImage from '@/images/poster.png'
+import coverArt from '@/images/cover-art.jpg'
 
 function AboutSection(props) {
   return (
     <section {...props}>
       <h2 className="flex items-center font-mono text-sm font-medium leading-7 text-slate-900">
         <TinyWaveFormIcon
-          colors={['fill-violet-300', 'fill-pink-300']}
+          colors={['fill-cib-green', 'fill-cib-blue']}
           className="h-2.5 w-2.5"
         />
-        <span className="ml-2.5">About</span>
+        <span className="ml-2.5">Summary</span>
       </h2>
       <p
         className={clsx(
           'mt-2 text-base leading-7 text-slate-700',
         )}
       >
-        A podcast that shares the stories of people who have grown up in a culture different from their parents.
-        Highlighting the unique experiences, challenges, and triumphs that come with navigating cultural identity.
-        By sharing these stories, we hope to raise awareness, promote empathy, and inspire listeners to appreciate the beauty of diverse cultures.
+        A podcast that shares the stories of people who grew up in a culture outside of their parents&apos; culture.
       </p>
     </section>
   )
@@ -36,7 +34,7 @@ function ListenSection(props) {
     <section className="mt-8">
       <h2 className="sr-only flex items-center font-mono text-sm font-medium leading-7 text-slate-900 lg:not-sr-only">
         <TinyWaveFormIcon
-          colors={['fill-indigo-300', 'fill-blue-300']}
+          colors={['fill-cib-green', 'fill-cib-blue']}
           className="h-2.5 w-2.5"
         />
         <span className="ml-2.5">Listen</span>
@@ -76,7 +74,7 @@ export function Layout({ children }) {
     <>
       <header className="bg-slate-50 lg:fixed lg:inset-y-0 lg:left-0 lg:flex lg:w-112 lg:items-start lg:overflow-y-auto xl:w-120">
         <div className="hidden lg:sticky lg:top-0 lg:flex lg:w-16 lg:flex-none lg:items-center lg:whitespace-nowrap lg:py-12 lg:text-sm lg:leading-7 lg:[writing-mode:vertical-rl]">
-          <span className="font-mono text-slate-500">Hosted by 🎙️</span>
+          <span className="font-mono text-slate-500">Hosted by <span className='inline-block rotate-90'>🎙️</span></span>
           <span className="mt-6 flex gap-6 font-bold text-slate-900">
             {hosts.map((host, hostIndex) => (
               <Fragment key={host}>
@@ -98,7 +96,7 @@ export function Layout({ children }) {
           >
             <Image
               className="w-full"
-              src={posterImage}
+              src={coverArt}
               alt=""
               sizes="(min-width: 1024px) 20rem, (min-width: 640px) 16rem, 12rem"
               priority
