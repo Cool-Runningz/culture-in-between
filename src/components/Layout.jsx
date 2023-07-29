@@ -16,7 +16,7 @@ function AboutSection(props) {
           colors={['fill-cib-green', 'fill-cib-blue']}
           className="h-2.5 w-2.5"
         />
-        <span className="ml-2.5">Summary</span>
+        <span className="ml-2.5">Description</span>
       </h2>
       <p
         className={clsx(
@@ -46,7 +46,7 @@ function ListenSection(props) {
       >
         {[
           ['Spotify', SpotifyIcon],
-          ['Apple Podcast', ApplePodcastIcon],
+          ['Apple Podcasts', ApplePodcastIcon],
           ['Google Podcasts', GooglePodcastsIcon],
           ['Overcast', OvercastIcon],
           ['RSS Feed', RSSIcon],

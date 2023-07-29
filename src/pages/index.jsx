@@ -6,6 +6,7 @@ import { parse } from 'rss-to-json'
 import { useAudioPlayer } from '@/components/AudioProvider'
 import { Container } from '@/components/Container'
 import { FormattedDate } from '@/components/FormattedDate'
+import { RSS_FEED, buildSlug } from '@/util/helpers'
 
 function PlayPauseIcon({ playing, ...props }) {
   return (
@@ -56,14 +57,13 @@ function EpisodeEntry({ episode }) {
             date={date}
             className="order-first font-mono text-sm leading-7 text-slate-500"
           />
-          <p className="mt-1 text-base leading-7 text-slate-700">
-            {episode.description}
-          </p>
+          <div className="mt-1 text-base leading-7 text-slate-700" dangerouslySetInnerHTML={{ __html: episode.description }}>
+          </div>
           <div className="mt-4 flex items-center gap-4">
             <button
               type="button"
               onClick={() => player.toggle()}
-              className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
+              className="flex items-center text-sm font-bold leading-6 text-cib-blue hover:underline decoration-wavy "
               aria-label={`${player.playing ? 'Pause' : 'Play'} episode ${episode.title
                 }`}
             >
@@ -83,7 +83,7 @@ function EpisodeEntry({ episode }) {
             </span>
             <Link
               href={`episode/${episode.id}`}
-              className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
+              className="flex items-center text-sm font-bold leading-6 text-cib-blue hover:underline decoration-wavy"
               aria-label={`Show notes for episode ${episode.title}`}
             >
               Show notes
@@ -124,14 +124,13 @@ export default function Home({ episodes }) {
 }
 
 export async function getStaticProps() {
-  let feed = await parse('https://their-side-feed.vercel.app/api/feed')
-
+  const feed = await parse(RSS_FEED)
   return {
     props: {
       episodes: feed.items.map(
-        ({ id, title, description, enclosures, published }) => ({
-          id,
-          title: `${id}: ${title}`,
+        ({ title, description, enclosures, published }) => ({
+          id: buildSlug(title), //TODO: Update field name to be 'slug'
+          title,
           published,
           description,
           audio: enclosures.map((enclosure) => ({

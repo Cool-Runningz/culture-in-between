@@ -7,6 +7,9 @@ import { Container } from '@/components/Container'
 import { FormattedDate } from '@/components/FormattedDate'
 import { PlayButton } from '@/components/player/PlayButton'
 
+import { RSS_FEED, buildSlug } from '@/util/helpers'
+
+
 export default function Episode({ episode }) {
   let date = new Date(episode.published)
 
@@ -44,9 +47,8 @@ export default function Episode({ episode }) {
                 />
               </div>
             </div>
-            <p className="ml-24 mt-3 text-lg font-medium leading-8 text-slate-700">
-              {episode.description}
-            </p>
+            <div className="ml-24 mt-3 text-lg font-medium leading-8 text-slate-700" dangerouslySetInnerHTML={{ __html: episode.description }}>
+            </div>
           </header>
           <hr className="my-12 border-gray-200" />
           <div
@@ -60,11 +62,11 @@ export default function Episode({ episode }) {
 }
 
 export async function getStaticProps({ params }) {
-  let feed = await parse('https://their-side-feed.vercel.app/api/feed')
+  let feed = await parse(RSS_FEED)
   let episode = feed.items
-    .map(({ id, title, description, content, enclosures, published }) => ({
-      id: id.toString(),
-      title: `${id}: ${title}`,
+    .map(({ title, description, content, enclosures, published }) => ({
+      id: buildSlug(title), //TODO: Update field name to be 'slug'
+      title,
       description,
       content,
       published,
@@ -73,7 +75,7 @@ export async function getStaticProps({ params }) {
         type: enclosure.type,
       }))[0],
     }))
-    .find(({ id }) => id === params.episode)
+    .find(({ id }) => id === params.episode) //FIXME: Update to use the 'slug' field (instead of id) to find a match
 
   if (!episode) {
     return {
@@ -90,12 +92,12 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  let feed = await parse('https://their-side-feed.vercel.app/api/feed')
+  let feed = await parse(RSS_FEED)
 
   return {
-    paths: feed.items.map(({ id }) => ({
+    paths: feed.items.map(({ title }) => ({
       params: {
-        episode: id.toString(),
+        episode: buildSlug(title),
       },
     })),
     fallback: 'blocking',
