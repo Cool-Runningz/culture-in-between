@@ -45,15 +45,14 @@ function ListenSection(props) {
         className="mt-4 flex justify-center gap-10 text-base font-medium leading-7 text-slate-700 sm:gap-8 lg:flex-col lg:gap-4"
       >
         {[
-          ['Spotify', SpotifyIcon],
-          ['Apple Podcasts', ApplePodcastIcon],
-          ['Google Podcasts', GooglePodcastsIcon],
-          ['Overcast', OvercastIcon],
-          ['RSS Feed', RSSIcon],
-        ].map(([label, Icon]) => (
+          ['Spotify', SpotifyIcon, 'https://open.spotify.com/show/1lTLAJv8ZaRAnMWY9UpDzl'],
+          ['Apple Podcasts', ApplePodcastIcon, 'https://podcasts.apple.com/us/podcast/culture-in-between/id1699976665'],
+          ['Google Podcasts', GooglePodcastsIcon, '/'],
+          ['RSS Feed', RSSIcon, 'https://feed.podbean.com/cultureinbetween/feed.xml'],
+        ].map(([label, Icon, url]) => (
           <li key={label} className="flex">
             <Link
-              href="/"
+              href={url}
               className="group flex items-center"
               aria-label={label}
             >
