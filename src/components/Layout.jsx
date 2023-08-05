@@ -4,9 +4,10 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { AudioPlayer } from '@/components/player/AudioPlayer'
-import { SpotifyIcon, ApplePodcastIcon, OvercastIcon, RSSIcon, GooglePodcastsIcon } from '@/components/icons/PodcastIcons'
+import { SpotifyIcon, ApplePodcastIcon, RSSIcon, GooglePodcastsIcon } from '@/components/icons/PodcastIcons'
 import { Waveform, TinyWaveFormIcon } from '@/components/icons/WavesIcons'
 import coverArt from '@/images/cover-art.jpg'
+import { APPLE_PODCASTS_URL, GOOGLE_PODCASTS_URL, RSS_FEED, SPOTIFY_URL } from '@/util/helpers'
 
 function AboutSection(props) {
   return (
@@ -45,20 +46,22 @@ function ListenSection(props) {
         className="mt-4 flex justify-center gap-10 text-base font-medium leading-7 text-slate-700 sm:gap-8 lg:flex-col lg:gap-4"
       >
         {[
-          ['Spotify', SpotifyIcon, 'https://open.spotify.com/show/1lTLAJv8ZaRAnMWY9UpDzl'],
-          ['Apple Podcasts', ApplePodcastIcon, 'https://podcasts.apple.com/us/podcast/culture-in-between/id1699976665'],
-          ['Google Podcasts', GooglePodcastsIcon, '/'],
-          ['RSS Feed', RSSIcon, 'https://feed.podbean.com/cultureinbetween/feed.xml'],
+          ['Apple Podcasts', ApplePodcastIcon, APPLE_PODCASTS_URL],
+          ['Spotify', SpotifyIcon, SPOTIFY_URL],
+          ['Google Podcasts', GooglePodcastsIcon, GOOGLE_PODCASTS_URL],
+          ['RSS Feed', RSSIcon, RSS_FEED],
         ].map(([label, Icon, url]) => (
           <li key={label} className="flex">
-            <Link
+            <a
               href={url}
               className="group flex items-center"
               aria-label={label}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <Icon className="h-8 w-8 fill-slate-400 group-hover:fill-slate-600" />
               <span className="hidden sm:ml-3 sm:block">{label}</span>
-            </Link>
+            </a>
           </li>
         ))}
       </ul>

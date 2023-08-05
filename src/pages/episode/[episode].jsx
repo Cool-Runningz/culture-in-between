@@ -47,8 +47,6 @@ export default function Episode({ episode }) {
                 />
               </div>
             </div>
-            <div className="ml-24 mt-3 text-lg font-medium leading-8 text-slate-700" dangerouslySetInnerHTML={{ __html: episode.description }}>
-            </div>
           </header>
           <hr className="my-12 border-gray-200" />
           <div

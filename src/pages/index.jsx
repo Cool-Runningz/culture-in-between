@@ -57,8 +57,9 @@ function EpisodeEntry({ episode }) {
             date={date}
             className="order-first font-mono text-sm leading-7 text-slate-500"
           />
-          <div className="mt-1 text-base leading-7 text-slate-700" dangerouslySetInnerHTML={{ __html: episode.description }}>
-          </div>
+          <p className="mt-1 text-base leading-7 text-slate-700" >
+            {episode.summary}
+          </p>
           <div className="mt-4 flex items-center gap-4">
             <button
               type="button"
@@ -128,11 +129,12 @@ export async function getStaticProps() {
   return {
     props: {
       episodes: feed.items.map(
-        ({ title, description, enclosures, published }) => ({
+        ({ title, description, enclosures, published, itunes_summary: summary }) => ({
           id: buildSlug(title), //TODO: Update field name to be 'slug'
           title,
           published,
           description,
+          summary,
           audio: enclosures.map((enclosure) => ({
             src: enclosure.url,
             type: enclosure.type,
