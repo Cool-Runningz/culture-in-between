@@ -29,8 +29,8 @@ export default function Episode({ episode }) {
   return (
     <>
       <Head>
-        <title>{`${episode.title} | Culture In Between`}</title>
-        <meta name="description" content={episode.description} />
+        <title>{episode.title}</title>
+        <meta name="description" content={episode.summary} />
       </Head>
       <article className="py-16 lg:py-36">
         <Container>
@@ -62,11 +62,12 @@ export default function Episode({ episode }) {
 export async function getStaticProps({ params }) {
   let feed = await parse(RSS_FEED)
   let episode = feed.items
-    .map(({ title, description, content, enclosures, published }) => ({
+    .map(({ title, description, content, enclosures, published, itunes_summary: summary }) => ({
       id: buildSlug(title), //TODO: Update field name to be 'slug'
       title,
       description,
       content,
+      summary,
       published,
       audio: enclosures.map((enclosure) => ({
         src: enclosure.url,

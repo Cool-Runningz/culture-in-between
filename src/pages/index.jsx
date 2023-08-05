@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, Fragment } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { parse } from 'rss-to-json'
@@ -105,7 +105,7 @@ export default function Home({ episodes }) {
         </title>
         <meta
           name="description"
-          content="Conversations with the most tragically misunderstood people of our time."
+          content="A podcast that shares the stories of people who grew up in a culture outside of their parents' culture."
         />
       </Head>
       <div className="pb-12 pt-16 sm:pb-4 lg:pt-12">
@@ -116,7 +116,9 @@ export default function Home({ episodes }) {
         </Container>
         <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100">
           {episodes.map((episode) => (
-            <EpisodeEntry key={episode.id} episode={episode} />
+            <Fragment key={episode.id}>
+              <EpisodeEntry episode={episode} />
+            </Fragment>
           ))}
         </div>
       </div>
