@@ -8,7 +8,7 @@ export default function Contact() {
                 <meta name="og:title" content="Contact | Culture In Between" />
                 <meta name="og:description" content="Contact the 'Culture In Between' team" />
             </Head>
-            <article className="py-16 lg:pt-36">
+            <article className="py-16 lg:pt-28">
                 <div className="isolate bg-white px-6 py-4 lg:px-8">
                     <div className="mx-auto max-w-2xl text-center">
                         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contact Us</h2>

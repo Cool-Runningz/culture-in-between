@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
@@ -69,6 +70,42 @@ function ListenSection(props) {
   )
 }
 
+function NavItem({ href, children }) {
+  let isActive = useRouter().pathname === href
+
+  return (
+    <li>
+      <Link
+        href={href}
+        className={clsx(
+          'relative block px-3 py-2 transition',
+          isActive
+            ? 'text-cib-blue'
+            : 'hover:text-cib-blue'
+        )}
+      >
+        {children}
+        {isActive && (
+          <span className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0" />
+        )}
+      </Link>
+    </li>
+  )
+}
+
+
+function DesktopNavigation(props) {
+  return (
+    <nav {...props}>
+      <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur">
+        <NavItem href="/hosts">Hosts</NavItem>
+        <NavItem href="/contact">Contact</NavItem>
+        {/*  <NavItem href="/projects">Map</NavItem> */}
+      </ul>
+    </nav>
+  )
+}
+
 export function Layout({ children }) {
   let hosts = ['Alyssa Holland', 'Brianna Samuels']
 
@@ -114,8 +151,9 @@ export function Layout({ children }) {
           <ListenSection />
         </div>
       </header>
-      <main className="border-t border-slate-200 lg:relative lg:mb-28 lg:ml-112 lg:border-t-0 xl:ml-120">
+      <main className="border-t border-slate-200 lg:relative lg:mb-28 lg:ml-112 lg:border-t-0 xl:ml-120 pt-4">
         <Waveform className="absolute left-0 top-0 h-20 w-full" />
+        <DesktopNavigation className="pointer-events-auto flex justify-center" />
         <div className="relative">{children}</div>
       </main>
       <div className="fixed inset-x-0 bottom-0 z-10 lg:left-112 xl:left-120">
