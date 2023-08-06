@@ -7,7 +7,8 @@ import { Container } from '@/components/Container'
 import { FormattedDate } from '@/components/FormattedDate'
 import { PlayButton } from '@/components/player/PlayButton'
 
-import { RSS_FEED, buildSlug } from '@/util/helpers'
+import { buildSlug } from '@/util/helpers'
+import { RSS_FEED } from '@/util/constants'
 
 
 export default function Episode({ episode }) {

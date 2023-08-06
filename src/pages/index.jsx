@@ -6,7 +6,8 @@ import { parse } from 'rss-to-json'
 import { useAudioPlayer } from '@/components/AudioProvider'
 import { Container } from '@/components/Container'
 import { FormattedDate } from '@/components/FormattedDate'
-import { RSS_FEED, buildSlug } from '@/util/helpers'
+import { buildSlug } from '@/util/helpers'
+import { RSS_FEED } from '@/util/constants'
 
 function PlayPauseIcon({ playing, ...props }) {
   return (
