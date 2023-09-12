@@ -76,7 +76,7 @@ function ListenSection() {
 
 function SocialSection() {
   return (
-    <section className="mt-2 sm:mt-8">
+    <section className="mt-2 lg:mt-8">
       <h2 className="sr-only flex items-center font-mono text-sm font-medium leading-7 text-slate-900 lg:not-sr-only">
         <TinyWaveFormIcon
           colors={['fill-cib-green', 'fill-cib-blue']}
@@ -103,7 +103,7 @@ function SocialSection() {
               rel="noopener noreferrer"
             >
               <Image
-                className="h-7 w-7"
+                className="h-6 w-6"
                 src={Icon}
                 alt={label}
                 priority

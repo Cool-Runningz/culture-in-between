@@ -35,7 +35,7 @@ function EpisodeEntry({ episode }) {
         src: episode.audio.src,
         type: episode.audio.type,
       },
-      link: `episode/${episode.id}`,
+      link: `${episode.id}`,
     }),
     [episode]
   )
@@ -66,7 +66,7 @@ function EpisodeEntry({ episode }) {
               type="button"
               onClick={() => player.toggle()}
               className="flex items-center text-sm font-bold leading-6 text-cib-blue hover:underline decoration-wavy "
-              aria-label={`${player.playing ? 'Pause' : 'Play'} episode ${episode.title
+              aria-label={`${player.playing ? 'Pause' : 'Play'} episode: ${episode.title
                 }`}
             >
               <PlayPauseIcon
@@ -86,7 +86,7 @@ function EpisodeEntry({ episode }) {
             <Link
               href={`episode/${episode.id}`}
               className="flex items-center text-sm font-bold leading-6 text-cib-blue hover:underline decoration-wavy"
-              aria-label={`Show notes for episode ${episode.title}`}
+              aria-label={`Show notes for episode: ${episode.title}`}
             >
               Show notes
             </Link>

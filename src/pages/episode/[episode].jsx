@@ -21,7 +21,7 @@ export default function Episode({ episode }) {
         src: episode.audio.src,
         type: episode.audio.type,
       },
-      link: `/${episode.id}`,
+      link: `${episode.id}`,
     }),
     [episode]
   )

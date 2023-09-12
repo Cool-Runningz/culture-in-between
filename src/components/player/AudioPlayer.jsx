@@ -18,9 +18,8 @@ function parseTime(seconds) {
 
 function formatHumanTime(seconds) {
   let [h, m, s] = parseTime(seconds)
-  return `${h} hour${h === 1 ? '' : 's'}, ${m} minute${
-    m === 1 ? '' : 's'
-  }, ${s} second${s === 1 ? '' : 's'}`
+  return `${h} hour${h === 1 ? '' : 's'}, ${m} minute${m === 1 ? '' : 's'
+    }, ${s} second${s === 1 ? '' : 's'}`
 }
 
 export function AudioPlayer() {
@@ -45,7 +44,9 @@ export function AudioPlayer() {
       </div>
       <div className="mb-[env(safe-area-inset-bottom)] flex flex-1 flex-col gap-3 overflow-hidden p-1">
         <Link
-          href={player.meta.link}
+          href={{
+            pathname: `/episode/${player.meta.link}`,
+          }}
           className="truncate text-center text-sm font-bold leading-6 md:text-left"
           title={player.meta.title}
         >
