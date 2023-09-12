@@ -2,6 +2,8 @@ import { useMemo, Fragment } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { parse } from 'rss-to-json'
+import { usePlausible } from 'next-plausible'
+
 
 import { useAudioPlayer } from '@/components/AudioProvider'
 import { Container } from '@/components/Container'
@@ -27,6 +29,7 @@ function PlayPauseIcon({ playing, ...props }) {
 
 function EpisodeEntry({ episode }) {
   let date = new Date(episode.published)
+  const plausible = usePlausible()
 
   let audioPlayerData = useMemo(
     () => ({
@@ -64,7 +67,10 @@ function EpisodeEntry({ episode }) {
           <div className="mt-4 flex items-center gap-4">
             <button
               type="button"
-              onClick={() => player.toggle()}
+              onClick={() => {
+                player.toggle()
+                plausible(`Listen Button: Click`)
+              }}
               className="flex items-center text-sm font-bold leading-6 text-cib-blue hover:underline decoration-wavy "
               aria-label={`${player.playing ? 'Pause' : 'Play'} episode: ${episode.title
                 }`}

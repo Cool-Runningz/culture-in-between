@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useReducer, useRef } from 'react'
+import { createContext, useContext, useMemo, useReducer, useRef, Fragment } from 'react'
 
 const AudioPlayerContext = createContext()
 
@@ -88,24 +88,26 @@ export function AudioProvider({ children }) {
       <AudioPlayerContext.Provider value={api}>
         {children}
       </AudioPlayerContext.Provider>
-      <audio
-        ref={playerRef}
-        onPlay={() => dispatch({ type: 'PLAY' })}
-        onPause={() => dispatch({ type: 'PAUSE' })}
-        onTimeUpdate={(event) => {
-          dispatch({
-            type: 'SET_CURRENT_TIME',
-            payload: Math.floor(event.target.currentTime),
-          })
-        }}
-        onDurationChange={(event) => {
-          dispatch({
-            type: 'SET_DURATION',
-            payload: Math.floor(event.target.duration),
-          })
-        }}
-        muted={state.muted}
-      />
+      <Fragment>
+        <audio
+          ref={playerRef}
+          onPlay={() => dispatch({ type: 'PLAY' })}
+          onPause={() => dispatch({ type: 'PAUSE' })}
+          onTimeUpdate={(event) => {
+            dispatch({
+              type: 'SET_CURRENT_TIME',
+              payload: Math.floor(event.target.currentTime),
+            })
+          }}
+          onDurationChange={(event) => {
+            dispatch({
+              type: 'SET_DURATION',
+              payload: Math.floor(event.target.duration),
+            })
+          }}
+          muted={state.muted}
+        />
+      </Fragment>
     </>
   )
 }

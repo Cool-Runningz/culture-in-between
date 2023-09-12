@@ -1,4 +1,6 @@
 import clsx from 'clsx'
+import { usePlausible } from 'next-plausible'
+
 
 function PauseIcon(props) {
   return (
@@ -21,6 +23,8 @@ function PlayIcon(props) {
 }
 
 export function PlayButton({ player, size = 'large' }) {
+  const plausible = usePlausible()
+
   return (
     <button
       type="button"
@@ -32,7 +36,10 @@ export function PlayButton({ player, size = 'large' }) {
           small: 'h-10 w-10 focus:ring-2 focus:ring-offset-2',
         }[size]
       )}
-      onClick={player.toggle}
+      onClick={() => {
+        player.toggle()
+        plausible(player.playing ? 'AudioPlayer: Pause' : 'AudioPlayer: Play')
+      }}
       aria-label={player.playing ? 'Pause' : 'Play'}
     >
       <div className="absolute -inset-3 md:hidden" />
