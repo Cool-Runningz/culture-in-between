@@ -38,7 +38,7 @@ export function PlayButton({ player, size = 'large' }) {
       )}
       onClick={() => {
         player.toggle()
-        plausible(player.playing ? 'AudioPlayer: Pause' : 'AudioPlayer: Play')
+        plausible(player.playing ? 'AudioPlayer: Pause' : 'AudioPlayer: Play', { props: { episode: player.meta.title } })
       }}
       aria-label={player.playing ? 'Pause' : 'Play'}
     >

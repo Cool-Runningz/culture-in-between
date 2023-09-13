@@ -69,7 +69,7 @@ function EpisodeEntry({ episode }) {
               type="button"
               onClick={() => {
                 player.toggle()
-                plausible(`Listen Button: Click`)
+                plausible(`Listen Button: Click`, { props: { episode: episode.title } })
               }}
               className="flex items-center text-sm font-bold leading-6 text-cib-blue hover:underline decoration-wavy "
               aria-label={`${player.playing ? 'Pause' : 'Play'} episode: ${episode.title
