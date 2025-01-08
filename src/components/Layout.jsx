@@ -5,10 +5,10 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { AudioPlayer } from '@/components/player/AudioPlayer'
-import { SpotifyIcon, ApplePodcastIcon, RSSIcon, GooglePodcastsIcon } from '@/components/icons/PodcastIcons'
+import { SpotifyIcon, ApplePodcastIcon, RSSIcon } from '@/components/icons/PodcastIcons'
 import { Waveform, TinyWaveFormIcon } from '@/components/icons/WavesIcons'
 import coverArt from '@/images/cover-art.jpg'
-import { APPLE_PODCASTS_URL, GOOGLE_PODCASTS_URL, RSS_FEED, SPOTIFY_URL, INSTAGRAM_URL, YOUTUBE_URL, TWITTER_URL } from '@/util/constants'
+import { APPLE_PODCASTS_URL, RSS_FEED, SPOTIFY_URL, INSTAGRAM_URL, YOUTUBE_URL, TWITTER_URL } from '@/util/constants'
 import InstagramLogo from '@/images/instagram-logo.png'
 import YTLogo from '@/images/youtube-icon.png'
 import XLogo from '@/images/x-logo.png'
@@ -52,7 +52,6 @@ function ListenSection() {
         {[
           ['Apple Podcasts', ApplePodcastIcon, APPLE_PODCASTS_URL],
           ['Spotify', SpotifyIcon, SPOTIFY_URL],
-          ['Google Podcasts', GooglePodcastsIcon, GOOGLE_PODCASTS_URL],
           ['RSS Feed', RSSIcon, RSS_FEED],
         ].map(([label, Icon, url]) => (
           <li key={label} className="flex">
