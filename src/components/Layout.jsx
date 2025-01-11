@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -7,11 +7,11 @@ import clsx from 'clsx'
 import { AudioPlayer } from '@/components/player/AudioPlayer'
 import { SpotifyIcon, ApplePodcastIcon, RSSIcon } from '@/components/icons/PodcastIcons'
 import { Waveform, TinyWaveFormIcon } from '@/components/icons/WavesIcons'
-import coverArt from '@/images/cover-art.jpg'
+import coverArt from 'public/images/cover-art.jpg'
 import { APPLE_PODCASTS_URL, RSS_FEED, SPOTIFY_URL, INSTAGRAM_URL, YOUTUBE_URL, TWITTER_URL } from '@/util/constants'
-import InstagramLogo from '@/images/instagram-logo.png'
-import YTLogo from '@/images/youtube-icon.png'
-import XLogo from '@/images/x-logo.png'
+import InstagramLogo from 'public/images/instagram-logo.png'
+import YTLogo from 'public/images/youtube-icon.png'
+import XLogo from 'public/images/x-logo.png'
 
 function AboutSection(props) {
   return (
