@@ -201,7 +201,7 @@ export function Layout({ children }) {
       </header>
       <main className="border-t border-slate-200 lg:relative lg:mb-28 lg:ml-112 lg:border-t-0 xl:ml-120 pt-4">
         <Waveform className="absolute left-0 top-0 h-20 w-full" />
-        <DesktopNavigation className="pointer-events-auto flex justify-center" />
+        <DesktopNavigation className="pointer-events-auto flex justify-center pb-4" />
         <div className="relative">{children}</div>
       </main>
       <div className="fixed inset-x-0 bottom-0 z-10 lg:left-112 xl:left-120">
