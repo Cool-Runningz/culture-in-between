@@ -3,8 +3,6 @@ import Head from 'next/head'
 import Navigation from '@/components/Navigation'
 import { AudioPlayer } from '@/components/player/AudioPlayer'
 import { Waveform } from '@/components/icons/WavesIcons'
-import heroLight from 'public/images/hero-light.png'
-
 import Sidebar from '@/components/layout/Sidebar'
 
 export default function Layout({ children }) {
@@ -16,13 +14,14 @@ export default function Layout({ children }) {
         </title>
         <meta property="og:title" content="Culture in Between" key="title" />
         <meta
-          name="og:description"
+          name="description"
           content="A podcast that shares the stories of people who grew up in a culture outside of their parents' culture."
         />
         <meta name="og:image" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://cultureinbetween.com/" />
-        <meta property="og:image" content={heroLight} />
+        <meta property="og:image" content="https://raw.githubusercontent.com/Cool-Runningz/culture-in-between/refs/heads/main/public/images/hero-light.png" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Sidebar />
       <main className="border-t border-slate-200 lg:relative lg:mb-28 lg:ml-112 lg:border-t-0 xl:ml-120 pt-4">
