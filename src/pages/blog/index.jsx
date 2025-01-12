@@ -47,6 +47,7 @@ export async function getStaticProps() {
     return {
         props: {
             posts: allPostsData,
+            componentName: "Blog"
         },
     };
 }
