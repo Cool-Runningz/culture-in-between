@@ -31,7 +31,8 @@ export default function Episode({ episode }) {
     <>
       <Head>
         <title>{episode.title}</title>
-        <meta name="description" content={episode.summary} />
+        <meta property="og:title" key="title" content={episode.title} />
+        <meta name="description" key="desc" content={episode.summary} />
       </Head>
       <article className="py-16 lg:py-36">
         <Container>

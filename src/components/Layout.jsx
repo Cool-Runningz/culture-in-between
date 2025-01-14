@@ -16,11 +16,12 @@ export default function Layout({ children }) {
         <meta property="og:title" content={CIB} key="title" />
         <meta
           name="description"
+          key="desc"
           content={DESCRIPTION}
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={WEBSITE_URL} />
-        <meta property="og:image" content={`${BASE_IMG_URL}/hero-light.png`} />
+        <meta property="og:image" key="image" content={`${BASE_IMG_URL}/hero-light.png`} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Sidebar />

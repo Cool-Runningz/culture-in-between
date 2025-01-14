@@ -6,8 +6,8 @@ export default function Hosts() {
         <>
             <Head>
                 <title>Hosts | Culture In Between</title>
-                <meta name="og:title" content="Hosts | Culture In Between" />
-                <meta name="description" content="Learn more about the hosts from the 'Culture In Between' podcast" />
+                <meta name="og:title" key="title" content="Hosts | Culture In Between" />
+                <meta name="description" key="desc" content="Learn more about the hosts from the 'Culture In Between' podcast" />
             </Head>
             <article
                 className="py-10 sm:py-12"

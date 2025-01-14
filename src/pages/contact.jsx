@@ -5,8 +5,8 @@ export default function Contact() {
         <>
             <Head>
                 <title>Contact | Culture In Between</title>
-                <meta name="og:title" content="Contact | Culture In Between" />
-                <meta name="description" content="Contact the 'Culture In Between' team" />
+                <meta name="og:title" key="title" content="Contact | Culture In Between" />
+                <meta name="description" key="desc" content="Contact the 'Culture In Between' team" />
             </Head>
             <article className="py-16 lg:pt-28">
                 <div className="isolate bg-white px-6 py-4 lg:px-8">

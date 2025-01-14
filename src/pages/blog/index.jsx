@@ -11,7 +11,8 @@ export default function Blog() {
                 <title>
                     Blog | Culture In Between
                 </title>
-                <meta name="description" content="Read articles from the 'Culture in Between' blog." />
+                <meta property="og:title" key="title" content="Blog | Culture In Between" />
+                <meta name="description" key="desc" content="Read articles from the 'Culture in Between' blog." />
             </Head>
             <div className="bg-white py-24 sm:py-32">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">

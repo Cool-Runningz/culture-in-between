@@ -21,9 +21,10 @@ export default function MDXLayout({ children }) {
             <meta property="og:title" content={title} key="title" />
             <meta
                 name="description"
+                key="desc"
                 content={description}
             />
-            <meta property="og:image" content={image} />
+            <meta property="og:image" key="image" content={image} />
         </Head>
         <article style={{ color: 'blue' }}>
             {children}
