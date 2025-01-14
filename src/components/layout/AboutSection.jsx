@@ -1,4 +1,5 @@
 import { TinyWaveFormIcon } from '@/components/icons/WavesIcons'
+import { DESCRIPTION } from '@/util/constants'
 import clsx from 'clsx'
 
 export default function AboutSection(props) {
@@ -16,7 +17,7 @@ export default function AboutSection(props) {
                     'mt-2 text-base leading-7 text-slate-700',
                 )}
             >
-                A podcast that shares the stories of people who grew up in a culture outside of their parents&apos; culture.
+                {DESCRIPTION}
             </p>
         </section>
     )

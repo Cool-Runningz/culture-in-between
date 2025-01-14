@@ -6,7 +6,6 @@ import { useAudioPlayer } from '@/components/AudioProvider'
 import { Container } from '@/components/Container'
 import { FormattedDate } from '@/components/FormattedDate'
 import { PlayButton } from '@/components/player/PlayButton'
-import Layout from '@/components/Layout'
 
 import { buildSlug } from '@/util/helpers'
 import { RSS_FEED } from '@/util/constants'
@@ -58,14 +57,6 @@ export default function Episode({ episode }) {
         </Container>
       </article>
     </>
-  )
-}
-
-Episode.getLayout = function getLayout(page) {
-  return (
-    <Layout>
-      {page}
-    </Layout>
   )
 }
 

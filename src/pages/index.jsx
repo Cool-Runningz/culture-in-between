@@ -1,7 +1,6 @@
 import { Fragment } from 'react'
 import { parse } from 'rss-to-json'
 
-import Layout from '@/components/Layout'
 import { Container } from '@/components/Container'
 import EpisodeEntry from '@/components/EpisodeEntry'
 import { buildSlug } from '@/util/helpers'
@@ -26,14 +25,6 @@ export default function Home({ episodes }) {
   )
 }
 
-Home.getLayout = function getLayout(page) {
-  return (
-    <Layout>
-      {page}
-    </Layout>
-  )
-}
-
 export async function getStaticProps() {
   const feed = await parse(RSS_FEED)
   return {
@@ -51,7 +42,6 @@ export async function getStaticProps() {
           }))[0],
         })
       ),
-      componentName: "Home"
     },
     revalidate: 10,
   }
