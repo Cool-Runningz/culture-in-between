@@ -12,7 +12,6 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'raw.githubusercontent.com',
-        pathname: '/Cool-Runningz/culture-in-between/**',
       },
     ],
   },
