@@ -9,16 +9,15 @@ export default function MDXLayout({ children }) {
     const slug = router.asPath.split('/blog/')?.[1]
 
     const metadata = posts.find((p) => p.slug === slug)
-    const title = `Blog | ${metadata.title}`
     const description = metadata.description
     const image = `${BASE_IMG_URL}/blog/${metadata.image}`
 
     return <>
         <Head>
             <title>
-                {title}
+                {metadata.title}
             </title>
-            <meta property="og:title" content={title} key="title" />
+            <meta property="og:title" content={metadata.title} key="title" />
             <meta
                 name="description"
                 key="desc"
@@ -26,7 +25,7 @@ export default function MDXLayout({ children }) {
             />
             <meta property="og:image" key="image" content={image} />
         </Head>
-        <article style={{ color: 'blue' }}>
+        <article className='mt-8 prose prose-sm sm:prose-base lg:prose-lg mx-auto'>
             {children}
         </article>
     </>
