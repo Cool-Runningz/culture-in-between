@@ -3,7 +3,12 @@ export const buildSlug = (title) => {
 }
 
 export const getFormattedDate = (date) => {
-  const newDate = new Date(date)
+  //Parse the date string manually to avoid timezone issues
+  const [year, month, day] = date.split('-').map(Number)
+
+  //Month is 0-based in the Date constructor
+  const newDate = new Date(year, month - 1, day)
+
   return new Intl.DateTimeFormat('en-US', {
     dateStyle: 'long',
   }).format(newDate)
