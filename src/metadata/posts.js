@@ -7,6 +7,13 @@ const posts = [
     date: '2025-01-15',
     image: 'podcast-setup.jpg',
   },
+  {
+    slug: 'cinema-club',
+    title: '5 Movies that Explore Growing Up Between Cultures',
+    description: 'In this post, we will cover five of our favorite movies that feature stories about growing up between cultures. We will tell you all about the plot (no spoilers though!), cultural themes, and our favorite moments for each movie. ',
+    date: '2025-04-16',
+    image: 'clapboard.jpg'
+  }
 ]
 
 export default posts
