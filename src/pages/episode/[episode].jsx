@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import Head from 'next/head'
 import { parse } from 'rss-to-json'
 
@@ -6,12 +6,14 @@ import { useAudioPlayer } from '@/components/AudioProvider'
 import { Container } from '@/components/Container'
 import { FormattedDate } from '@/components/FormattedDate'
 import { PlayButton } from '@/components/player/PlayButton'
+import Tabs from '@/components/Tabs'
 
-import { buildSlug } from '@/util/helpers'
+import { buildSlug, generateTabs, formatSRTToReadableTranscript } from '@/util/helpers'
 import { RSS_FEED } from '@/util/constants'
 
+export default function Episode({ episode, transcript }) {
+  const [activeTab, setActiveTab] = useState('show-notes')
 
-export default function Episode({ episode }) {
   let date = new Date(episode.published)
 
   let audioPlayerData = useMemo(
@@ -50,11 +52,20 @@ export default function Episode({ episode }) {
               </div>
             </div>
           </header>
-          <hr className="my-12 border-gray-200" />
-          <div
-            className="prose prose-slate mt-14 [&>h2:nth-of-type(3n)]:before:bg-violet-200 [&>h2:nth-of-type(3n+2)]:before:bg-indigo-200 [&>h2]:mt-12 [&>h2]:flex [&>h2]:items-center [&>h2]:font-mono [&>h2]:text-sm [&>h2]:font-medium [&>h2]:leading-7 [&>h2]:text-slate-900 [&>h2]:before:mr-3 [&>h2]:before:h-3 [&>h2]:before:w-1.5 [&>h2]:before:rounded-r-full [&>h2]:before:bg-cyan-200 [&>ul]:mt-6 [&>ul]:list-['\2013\20'] [&>ul]:pl-5"
-            dangerouslySetInnerHTML={{ __html: episode.content }}
+         <br />
+         {transcript ? 
+         <Tabs
+          tabsList={generateTabs(episode, transcript)} 
+          value={activeTab} 
+          label="Tabs for view show notes or transcript" 
+          onValueChange={(val) => setActiveTab(val)}
           />
+          :
+          <div
+          className="prose prose-slate mt-14 [&>h2:nth-of-type(3n)]:before:bg-violet-200 [&>h2:nth-of-type(3n+2)]:before:bg-indigo-200 [&>h2]:mt-12 [&>h2]:flex [&>h2]:items-center [&>h2]:font-mono [&>h2]:text-sm [&>h2]:font-medium [&>h2]:leading-7 [&>h2]:text-slate-900 [&>h2]:before:mr-3 [&>h2]:before:h-3 [&>h2]:before:w-1.5 [&>h2]:before:rounded-r-full [&>h2]:before:bg-cyan-200 [&>ul]:mt-6 [&>ul]:list-['\2013\20'] [&>ul]:pl-5"
+          dangerouslySetInnerHTML={{ __html: episode.content }}
+        />
+          }
         </Container>
       </article>
     </>
@@ -64,13 +75,14 @@ export default function Episode({ episode }) {
 export async function getStaticProps({ params }) {
   let feed = await parse(RSS_FEED)
   let episode = feed.items
-    .map(({ title, description, content, enclosures, published, itunes_summary: summary }) => ({
+    .map(({ title, description, content, enclosures, published, itunes_summary: summary, podcast_transcript = null}) => ({
       id: buildSlug(title), //TODO: Update field name to be 'slug'
       title,
       description,
       content,
       summary,
       published,
+      transcriptURL: podcast_transcript && podcast_transcript?.url,
       audio: enclosures.map((enclosure) => ({
         src: enclosure.url,
         type: enclosure.type,
@@ -84,9 +96,25 @@ export async function getStaticProps({ params }) {
     }
   }
 
+  let transcript = null;
+
+  if (episode.transcriptURL) {
+    try {
+      const res = await fetch(episode.transcriptURL);
+      const srtText = await res.text();
+
+      transcript = formatSRTToReadableTranscript(srtText);
+
+    } catch (err) {
+      console.error(`Transcript fetch failed: ${err.message}`);
+      transcript = null;
+    }
+  }
+
   return {
     props: {
       episode,
+      transcript
     },
     revalidate: 10,
   }
